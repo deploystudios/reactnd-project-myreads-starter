@@ -3,14 +3,12 @@ import React, { Component } from 'react';
 class Book extends Component {
 
     onBookshelfChange = e => {
-        this.props.updateBookshelf(this.props.index, e.target.value)
-        // e.currentTarget.reset();
+        this.props.updateBookshelf(this.props.index, e.target.value);
     }
 
     render() {
 
-        const { book } = this.props;
-
+        const { book, bookshelves } = this.props;
 
         return (
             <li>
@@ -20,15 +18,18 @@ class Book extends Component {
                 <div className="book-shelf-changer">
                   <select onChange={ this.onBookshelfChange }>
                     <option value="move" disabled>Move to...</option>
-                    <option value="bookshelf1">Currently Reading</option>
-                    <option value="bookshelf2">Want to Read</option>
-                    <option value="bookshelf3">Read</option>
+                    {/* { Object.values(bookshelves).map(bookshelf => (
+                        <option key={ bookshelf[0] } value={ bookshelf[0] }>{ bookshelf.title }</option>
+                    ))} */}
+                    <option value="currentlyReading">Currently Reading</option>
+                    <option value="wantToRead">Want to Read</option>
+                    <option value="read">Read</option>
                     <option value="none">None</option>
                   </select>
                 </div>
               </div>
               <div className="book-title">{ book.title }</div>
-              <div className="book-authors">{ book.authors }</div>
+              <div className="book-authors">{ book.authors.join(', ') }</div>
             </div>
           </li>
         )
