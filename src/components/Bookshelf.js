@@ -6,18 +6,17 @@ class Bookshelf extends Component {
 
     render() {
 
-        const { bookshelves, books, index, updateBookshelf } = this.props;
+        const { bookshelfIndex, bookshelves, books } = this.props;
 
         return (
             <div className="bookshelf">
-            <h2 className="bookshelf-title">{ bookshelves[index].title }</h2>
+            <h2 className="bookshelf-title">{ bookshelves[bookshelfIndex].title }</h2>
             <div className="bookshelf-books">
                 <BookGrid 
-                    key={ index }
-                    index={ index } 
-                    books={ books } 
-                    bookshelves={ bookshelves } 
-                    updateBookshelf={ updateBookshelf }
+                    key={ bookshelfIndex }
+                    bookshelfIndex={ bookshelfIndex } 
+                    bookshelves={ bookshelves }
+                    books={ books }
                 />
             </div>
           </div>		

@@ -5,20 +5,17 @@ class BookGrid extends Component {
 
     render() {
 
-        const { index, books, bookshelves, updateBookshelf } = this.props;
+        const { bookshelfIndex, bookshelves, books } = this.props;
 
         return (
             <ol className="books-grid">
                 { 
-                Object.entries(books)
-                .filter(book => book[1].bookshelf === index)
+                books.filter(book => book.shelf === bookshelfIndex)
                 .map(book => (
                 <Book 
-                    key={ book[0] } 
-                    index={ book[0] }
-                    book={ book[1] } 
+                    key={ book.title } 
+                    book={ book } 
                     bookshelves={ bookshelves }
-                    updateBookshelf={ updateBookshelf }
                 />))
                 }
             </ol>

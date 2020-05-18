@@ -23,10 +23,7 @@ class BooksApp extends Component {
   };
 
   componentDidMount() {
-    BooksAPI.getAll()
-    .then((books) => {
-      this.setState((books) => ({ books }));
-    })
+    BooksAPI.getAll().then(books => this.setState({ books }));
   }
 
   updateBookshelf = (bookIndex, bookshelf) => {
@@ -43,11 +40,6 @@ class BooksApp extends Component {
 
   render() {
 
-
-    BooksAPI.getAll().then(books => this.setState({ books }));
-
-    console.log(this.state);
-    
     return (
       <div className="app">
           <div className="list-books">
@@ -57,10 +49,9 @@ class BooksApp extends Component {
                 { Object.keys(this.state.bookshelves).map(key => (
                   <Bookshelf 
                     key={ key }
+                    bookshelfIndex={ key } 
                     bookshelves={ this.state.bookshelves }
-                    books={ this.state.books } 
-                    index={ key } 
-                    updateBookshelf={ this.updateBookshelf }
+                    books={ this.state.books }
                   />
                 ))}
               </div>

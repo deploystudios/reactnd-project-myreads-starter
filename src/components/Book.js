@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Book extends Component {
 
     onBookshelfChange = e => {
-        this.props.updateBookshelf(this.props.index, e.target.value);
+        // this.props.updateBookshelf(this.props.index, e.target.value);
     }
 
     render() {
@@ -14,17 +14,14 @@ class Book extends Component {
             <li>
             <div className="book">
               <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.cover}")` }}></div>
+                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.smallThumbnail}")` }}></div>
                 <div className="book-shelf-changer">
                   <select onChange={ this.onBookshelfChange }>
-                    <option value="move" disabled>Move to...</option>
-                    {/* { Object.values(bookshelves).map(bookshelf => (
-                        <option key={ bookshelf[0] } value={ bookshelf[0] }>{ bookshelf.title }</option>
-                    ))} */}
-                    <option value="currentlyReading">Currently Reading</option>
-                    <option value="wantToRead">Want to Read</option>
-                    <option value="read">Read</option>
-                    <option value="none">None</option>
+                    <option key="move" value="move" disabled>Move to...</option>
+                    { Object.values(bookshelves).map(bookshelf => (
+                        <option key={ `${bookshelf[0]}-select` } value={ bookshelf[0] }>{ bookshelf.title }</option>
+                    )) }
+                    <option key="none" value="none">None</option>
                   </select>
                 </div>
               </div>
