@@ -23,19 +23,11 @@ class BooksApp extends Component {
   };
 
   componentDidMount() {
-    BooksAPI.getAll().then(books => this.setState({ books }));
+    this.refreshBooks();
   }
 
-  updateBookshelf = (bookIndex, bookshelf) => {
-    const books = { ...this.state.books }
-    books[bookIndex].bookshelf = bookshelf;
-    console.log(books);
-    this.setState({ books });
-
-  }
-
-  addBook = (book) => {
-    this.setState({ ...this.state.books, book});
+  refreshBooks = async () => {
+    await BooksAPI.getAll().then((books) => this.setState({ books }));
   }
 
   render() {
@@ -52,12 +44,18 @@ class BooksApp extends Component {
                     bookshelfIndex={ key } 
                     bookshelves={ this.state.bookshelves }
                     books={ this.state.books }
+                    refreshBooks={ this.refreshBooks }
                   />
                 ))}
               </div>
             </div>
             <div className="open-search">
-              <Link to="/search">
+              <Link to={{ 
+                pathname: '/search',
+                state: { 
+                  bookshelves: this.state.bookshelves
+                }
+              }}>
                 <button>Add a book</button>
               </Link>
             </div>

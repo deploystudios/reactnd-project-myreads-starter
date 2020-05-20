@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import BookGrid from './BookGrid';
 
-class Bookshelf extends Component {
+const Bookshelf = props => {
 
-
-    render() {
-
-        const { bookshelfIndex, bookshelves, books } = this.props;
+        const { bookshelfIndex, bookshelves, books, refreshBooks } = props;
 
         return (
             <div className="bookshelf">
@@ -17,11 +14,11 @@ class Bookshelf extends Component {
                     bookshelfIndex={ bookshelfIndex } 
                     bookshelves={ bookshelves }
                     books={ books }
+                    refreshBooks={ refreshBooks }
                 />
             </div>
           </div>		
         )
-    }
 
 }
 

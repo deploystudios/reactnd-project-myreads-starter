@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Book from './Book';
 
-class BookGrid extends Component {
+const BookGrid = props => {
 
-    render() {
-
-        const { bookshelfIndex, bookshelves, books } = this.props;
+        const { bookshelfIndex, bookshelves, books, refreshBooks } = props;
 
         return (
             <ol className="books-grid">
@@ -13,14 +11,14 @@ class BookGrid extends Component {
                 books.filter(book => book.shelf === bookshelfIndex)
                 .map(book => (
                 <Book 
-                    key={ book.title } 
+                    key={ book.id } 
                     book={ book } 
                     bookshelves={ bookshelves }
+                    refreshBooks={ refreshBooks }
                 />))
                 }
             </ol>
         )
-    }
 
 }
 
